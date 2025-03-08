@@ -1,10 +1,28 @@
+using LoginBackend.Api.Configuration;
 using LoginBackend.Application;
+using LoingBackend.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
+const string defaultCors = "DefaultPolicy";
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: defaultCors,
+        policy =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        });
+});
 
 // Add services to the container.
 
@@ -57,6 +75,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+ServiceConfiguraion.ConfigureServices(builder.Services);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -67,6 +87,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(defaultCors);
 
 app.UseAuthorization();
 

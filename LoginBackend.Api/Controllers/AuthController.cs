@@ -1,6 +1,9 @@
-﻿using LoginBackend.Application.Services;
+﻿using LoginBackend.Api.Models;
+using LoginBackend.Application.Services;
+using LoginBackend.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LoginBackend.Api.Controllers;
 
@@ -9,20 +12,20 @@ namespace LoginBackend.Api.Controllers;
 [Route("api/[controller]")]
 public class AuthController : Controller
 {
-    private readonly List<string> userNameOrEmailValid = new List<string>
+    private readonly IUserRepository _userRepository;
+    public AuthController(IUserRepository userRepository)
     {
-        "cassiano.oliveira",
-        "cassiano.oliveira@ambev.com",
-        "cassiano.oliveira@nttdata.com"
-    };
+        _userRepository = userRepository;
+    }
 
     [AllowAnonymous]
     [HttpPost]
-    public IActionResult Login(string userNameOrEmail, string password)
+    public async Task<IActionResult> Login([FromBody] LoginCredencials loginCredencials)
     {
-        if (userNameOrEmailValid.Contains(userNameOrEmail))
+        var user = await _userRepository.GetValid(loginCredencials?.email, loginCredencials?.password);
+        if (user != null)
         {
-            var token = TokenService.GenerateToken(new Domain.Entities.User() { Guid = new Guid(), Email = userNameOrEmail, UserName = userNameOrEmail });
+            var token = TokenService.GenerateToken(user);
             return Ok(token);
         }
 

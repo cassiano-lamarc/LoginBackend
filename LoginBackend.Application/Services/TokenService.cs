@@ -15,7 +15,7 @@ public class TokenService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim("userId", user.Guid.ToString())
+                new Claim("userId", user.Id.ToString())
             }),
             Expires = DateTime.UtcNow.AddHours(2),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
@@ -28,7 +28,9 @@ public class TokenService
 
         return new
         {
-            token = tokenString
+            token = tokenString,
+            id = user?.Id,
+            email = user?.Email
         };
     }
 }
