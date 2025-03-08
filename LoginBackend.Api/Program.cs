@@ -75,7 +75,9 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-ServiceConfiguraion.ConfigureServices(builder.Services);
+builder.Services.AddAutoMapper(config => config.AddProfile<AutoMapperProfile>());
+ServiceConfigurations.ConfigureSerices(builder.Services);
+RepositoryConfiguraions.ConfigureRepositories(builder.Services);
 
 var app = builder.Build();
 
