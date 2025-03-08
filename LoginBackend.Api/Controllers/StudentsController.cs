@@ -7,7 +7,7 @@ namespace LoginBackend.Api.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("v1/[controller]")]
+[Route("api/[controller]")]
 public class StudentsController : Controller
 {
     private readonly IAddStudentUseCase _addUseCase;
@@ -17,7 +17,7 @@ public class StudentsController : Controller
         _addUseCase = addUseCase;
     }
 
-    [HttpPost("add")]
+    [HttpPost]
     public async Task<int> Add([FromBody] AddStudentRequest request)
         => await _addUseCase.Handler(request);
 }

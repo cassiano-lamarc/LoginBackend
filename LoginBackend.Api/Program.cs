@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using LoginBackend.Api.Configuration;
 using LoginBackend.Application;
 using LoingBackend.Data.Context;
@@ -27,6 +28,7 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x =>
@@ -78,6 +80,7 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAutoMapper(config => config.AddProfile<AutoMapperProfile>());
 ServiceConfigurations.ConfigureSerices(builder.Services);
 RepositoryConfiguraions.ConfigureRepositories(builder.Services);
+ValidatorConfigurations.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
