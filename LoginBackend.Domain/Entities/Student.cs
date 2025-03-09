@@ -5,6 +5,15 @@ namespace LoginBackend.Domain.Entities;
 
 public class Student
 {
+    public Student(int id, string name, string? email, DateTime? birthDate, string? phone)
+    {
+        Id = id;
+        Name = name;
+        BirthDate = birthDate;
+        Email = email;
+        Phone = phone;
+    }
+
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }

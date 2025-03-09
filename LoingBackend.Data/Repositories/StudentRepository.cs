@@ -23,11 +23,18 @@ public class StudentRepository : BaseRepository, IStudentRepository
             (exatlyName == null || x.Name.ToLower().Trim() == exatlyName.ToLower().Trim()) &&
             (exatlyEmail == null || (x.Email != null && x.Email.ToLower().Trim() == exatlyEmail.ToLower().Trim()))
         )
+        .OrderBy(x => x.Id)
         .ToListAsync();
 
     public async Task Remove(Student student)
     {
         _context.Students.Remove(student);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task Update(Student student)
+    {
+        _context.Students.Update(student);
         await _context.SaveChangesAsync();
     }
 }

@@ -13,15 +13,22 @@ public class StudentsController : Controller
 {
     private readonly IAddStudentUseCase _addUseCase;
     private readonly IGetStudentUseCase _getUSeCase;
+    private readonly IEditStudentUseCase _editUseCase;
+    private readonly IDeleteStudentUseCase _deleteUseCase;
     private readonly IGetStudentByIdUseCase _getByIdUseCase;
-    private readonly IDeleteStudentUseCase _deleteUseCase;    
 
-    public StudentsController(IAddStudentUseCase addUseCase, IGetStudentUseCase getUseCase, IGetStudentByIdUseCase getBydUseCase, IDeleteStudentUseCase deleteUseCase)
+    public StudentsController(
+        IAddStudentUseCase addUseCase,
+        IGetStudentUseCase getUseCase,
+        IEditStudentUseCase editUseCase,
+        IDeleteStudentUseCase deleteUseCase,
+        IGetStudentByIdUseCase getBydUseCase)
     {
         _addUseCase = addUseCase;
         _getUSeCase = getUseCase;
-        _getByIdUseCase = getBydUseCase;
+        _editUseCase = editUseCase;
         _deleteUseCase = deleteUseCase;
+        _getByIdUseCase = getBydUseCase;
     }
 
     [HttpPost]
@@ -39,4 +46,8 @@ public class StudentsController : Controller
     [HttpGet("{id}")]
     public async Task<GetStudentResponse> GetById([FromRoute] int id)
         => await _getByIdUseCase.Handler(id);
+
+    [HttpPut("{id}")]
+    public async Task<bool> Edit([FromRoute] int id, [FromBody] AddStudentRequest request)
+        => await _editUseCase.Handler(id, request);
 }

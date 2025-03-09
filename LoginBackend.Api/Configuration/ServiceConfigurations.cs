@@ -11,5 +11,6 @@ public static class ServiceConfigurations
         services.AddScoped<IGetStudentUseCase, GetStudentUseCase>();
         services.AddScoped<IDeleteStudentUseCase, DeleteStudentUseCase>();
         services.AddScoped<IGetStudentByIdUseCase, GetStudentByIdUseCase>();
+        services.AddScoped<IEditStudentUseCase, EditStudentUseCase>();
     }
 }
