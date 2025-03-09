@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using LoginBackend.Api.Configuration;
+using LoginBackend.Api.Configuration.Middleware;
 using LoginBackend.Application;
 using LoingBackend.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -98,5 +99,7 @@ app.UseCors(defaultCors);
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();

@@ -1,19 +1,17 @@
 ﻿using AutoMapper;
-using LoginBackend.Application.Interfaces;
+using LoginBackend.Application.Interfaces.StudentInterfaceUseCase;
 using LoginBackend.Application.Responses;
 using LoginBackend.Domain.Interfaces.Repositories;
 
-namespace LoginBackend.Application.UseCases;
+namespace LoginBackend.Application.UseCases.StudentUseCase;
 
-public class GetStudentUseCase : IGetStudentUseCase
+public class GetStudentUseCase : StudentBaseUseCase, IGetStudentUseCase
 {
     private readonly IMapper _mapper;
-    private readonly IStudentRepository _repository;
    
-    public GetStudentUseCase(IMapper mapper, IStudentRepository repository)
+    public GetStudentUseCase(IMapper mapper, IStudentRepository repository): base (repository)
     {
         _mapper = mapper;
-        _repository = repository;
     }
 
     public async Task<List<GetStudentResponse>> Handler()

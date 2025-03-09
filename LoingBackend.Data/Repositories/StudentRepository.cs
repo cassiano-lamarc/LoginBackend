@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LoingBackend.Data.Repositories;
 
-public class StudentRepository : IStudentRepository
+public class StudentRepository : BaseRepository, IStudentRepository
 {
-    private readonly AppDbContext _context;
-
-    public StudentRepository(AppDbContext context)
-    {
-        _context = context;
-    }
+    public StudentRepository(AppDbContext context) : base(context) { }
 
     public async Task<int> Add(Student student)
     {
@@ -22,8 +17,12 @@ public class StudentRepository : IStudentRepository
         return newStudent?.Entity?.Id ?? 0;
     }
 
-    public async Task<List<Student>> Get()
+    public async Task<List<Student>> Get(int? id = null)
+        => await _context.Students.Where(x => id == null || x.Id == id).ToListAsync();
+
+    public async Task Remove(Student student)
     {
-        return await _context.Students.ToListAsync();
+        _context.Students.Remove(student);
+        await _context.SaveChangesAsync();
     }
 }

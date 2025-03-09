@@ -5,15 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LoingBackend.Data.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository : BaseRepository, IUserRepository
 {
-    private readonly AppDbContext _context;
+    public UserRepository(AppDbContext context) : base(context) { }
 
-    public UserRepository(AppDbContext context)
-    {
-        _context = context;
-    }
-
-    public async Task<User?> GetValid(string email, string password) 
+    public async Task<User?> GetValid(string email, string password)
         => await _context.User.Where(x => x.Email.ToLower().Equals(email.ToLower()) && x.Password.Equals(password)).FirstOrDefaultAsync();
 }

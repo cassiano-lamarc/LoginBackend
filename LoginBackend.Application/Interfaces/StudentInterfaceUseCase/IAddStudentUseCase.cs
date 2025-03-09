@@ -1,6 +1,6 @@
 ﻿using LoginBackend.Application.Requests;
 
-namespace LoginBackend.Application.Interfaces;
+namespace LoginBackend.Application.Interfaces.StudentInterfaceUseCase;
 
 public interface IAddStudentUseCase
 {
