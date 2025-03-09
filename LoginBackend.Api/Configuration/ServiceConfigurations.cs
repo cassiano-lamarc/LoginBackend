@@ -8,5 +8,6 @@ public static class ServiceConfigurations
     public static void ConfigureSerices(IServiceCollection services)
     {
         services.AddScoped<IAddStudentUseCase, AddStudentUseCase>();
+        services.AddScoped<IGetStudentUseCase, GetStudentUseCase>();
     }
 }

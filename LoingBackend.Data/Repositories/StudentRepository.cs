@@ -21,4 +21,9 @@ public class StudentRepository : IStudentRepository
 
         return newStudent?.Entity?.Id ?? 0;
     }
+
+    public async Task<List<Student>> Get()
+    {
+        return await _context.Students.ToListAsync();
+    }
 }
