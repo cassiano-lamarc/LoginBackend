@@ -21,7 +21,7 @@ public class StudentRepository : BaseRepository, IStudentRepository
         => await _context.Students
         .Where(x => (id == null || x.Id == id) &&
             (exatlyName == null || x.Name.ToLower().Trim() == exatlyName.ToLower().Trim()) &&
-            (exatlyEmail == null || x.Name.ToLower().Trim() == exatlyEmail.ToLower().Trim())
+            (exatlyEmail == null || (x.Email != null && x.Email.ToLower().Trim() == exatlyEmail.ToLower().Trim()))
         )
         .ToListAsync();
 

@@ -1,5 +1,6 @@
 ﻿using LoginBackend.Api.Models;
 using LoginBackend.Application.Services;
+using LoginBackend.Domain.Exceptions;
 using LoginBackend.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ public class AuthController : Controller
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> Login([FromBody] LoginCredencials loginCredencials)
+    public async Task<object> Login([FromBody] LoginCredencials loginCredencials)
     {
         var user = await _userRepository.GetValid(loginCredencials?.email, loginCredencials?.password);
         if (user != null)
@@ -29,6 +30,6 @@ public class AuthController : Controller
             return Ok(token);
         }
 
-        return BadRequest("Dados de login inválidos");
+        throw new CustomException("Incorret Email or Password");
     }
 }
