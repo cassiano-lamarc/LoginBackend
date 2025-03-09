@@ -17,8 +17,13 @@ public class StudentRepository : BaseRepository, IStudentRepository
         return newStudent?.Entity?.Id ?? 0;
     }
 
-    public async Task<List<Student>> Get(int? id = null)
-        => await _context.Students.Where(x => id == null || x.Id == id).ToListAsync();
+    public async Task<List<Student>> Get(int? id = null, string? exatlyName = null, string? exatlyEmail = null)
+        => await _context.Students
+        .Where(x => (id == null || x.Id == id) &&
+            (exatlyName == null || x.Name.ToLower().Trim() == exatlyName.ToLower().Trim()) &&
+            (exatlyEmail == null || x.Name.ToLower().Trim() == exatlyEmail.ToLower().Trim())
+        )
+        .ToListAsync();
 
     public async Task Remove(Student student)
     {

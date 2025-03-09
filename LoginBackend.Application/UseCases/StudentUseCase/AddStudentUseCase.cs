@@ -18,6 +18,10 @@ public class AddStudentUseCase : StudentBaseUseCase, IAddStudentUseCase
 
     public async Task<int> Handler(AddStudentRequest request)
     {
+        var existingStudent = await _repository.Get(null, request.name, request.email);
+        if (existingStudent != null)
+            throw new CustomException("Already exist a student with the same name and email");
+
         var newId = await _repository.Add(_mapper.Map<Student>(request));
 
         if (newId == 0)
