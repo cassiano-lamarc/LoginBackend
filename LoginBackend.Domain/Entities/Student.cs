@@ -5,6 +5,10 @@ namespace LoginBackend.Domain.Entities;
 
 public class Student
 {
+    public Student()
+    {
+        
+    }
     public Student(int id, string name, string? email, DateTime? birthDate, string? phone)
     {
         Id = id;
