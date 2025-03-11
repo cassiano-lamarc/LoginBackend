@@ -28,8 +28,8 @@ After bringing up the Compose, the database must be updated using the following 
 - Open package manager console and cd to data folder.
 - set startup project LoginBackend.Api
 - change the pattern project to LoginBackend.Data
-- type: <dotnet ef migrations add initial-migration>
-- type: <dotnet ef database update>
+- run: dotnet ef migrations add initial-migration
+- run: dotnet ef database update
 - connect the databse with any sgbd for postgresql that you prefer with connections data below:
   host: localhost
   port: 5433
