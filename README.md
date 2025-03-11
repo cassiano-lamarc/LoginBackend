@@ -5,8 +5,8 @@ The application is named "Login," but it has evolved into a complete project for
 After bringing up the Compose, the database must be updated using the following commands:
 
 - dotnet ef migrations add initial-migration
-- dotnet ef UPDATE-DATABASE
-- 
+- dotnet ef database update
+
 If you encounter an error when using dotnet ef commands, try installing it with the following command:
 dotnet tool install --global dotnet-ef
 
