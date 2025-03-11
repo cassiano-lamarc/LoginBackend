@@ -1,4 +1,4 @@
-﻿using LoginBackend.Application.Responses;
+﻿using LoginBackend.Application.Responses.Students;
 
 namespace LoginBackend.Application.Interfaces.StudentInterfaceUseCase;
 

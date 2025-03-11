@@ -1,4 +1,4 @@
-﻿namespace LoginBackend.Api.Models;
+﻿namespace LoginBackend.Application.Responses;
 
 public class CustomResponse
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using LoginBackend.Application.Interfaces.StudentInterfaceUseCase;
-using LoginBackend.Application.Responses;
+using LoginBackend.Application.Responses.Students;
 using LoginBackend.Domain.Exceptions;
 using LoginBackend.Domain.Interfaces.Repositories;
 

@@ -1,10 +1,11 @@
-﻿using LoginBackend.Api.Models;
+﻿using FluentValidation;
 using LoginBackend.Application.Services;
 using LoginBackend.Domain.Exceptions;
 using LoginBackend.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using LoginBackend.Application.Responses;
+using LoginBackend.Application.Requests;
 
 namespace LoginBackend.Api.Controllers;
 
@@ -14,15 +15,24 @@ namespace LoginBackend.Api.Controllers;
 public class AuthController : Controller
 {
     private readonly IUserRepository _userRepository;
-    public AuthController(IUserRepository userRepository)
+    private readonly IValidator<LoginCredencialsRequest> _validator;
+
+    public AuthController(IUserRepository userRepository, IValidator<LoginCredencialsRequest> validator)
     {
         _userRepository = userRepository;
+        _validator = validator;
     }
 
     [AllowAnonymous]
     [HttpPost]
-    public async Task<object> Login([FromBody] LoginCredencials loginCredencials)
+    [ProducesResponseType<object>(StatusCodes.Status200OK)]
+    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Login([FromBody] LoginCredencialsRequest loginCredencials)
     {
+        var validation = _validator.Validate(loginCredencials);
+        if (!validation.IsValid)
+            throw new CustomException(validation?.Errors?.FirstOrDefault()?.ToString());
+
         var user = await _userRepository.GetValid(loginCredencials?.email, loginCredencials?.password);
         if (user != null)
         {

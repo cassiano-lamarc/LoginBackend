@@ -1,7 +1,8 @@
 ﻿using LoginBackend.Application.Interfaces.StudentInterfaceUseCase;
 using LoginBackend.Application.UseCases.StudentUseCase;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace LoginBackend.Api.Configuration;
+namespace LoginBackend.Application.Configuration;
 
 public static class ServiceConfigurations
 {

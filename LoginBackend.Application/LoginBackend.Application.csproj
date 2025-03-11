@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoginBackend.Domain\LoginBackend.Domain.csproj" />
+    <ProjectReference Include="..\LoingBackend.Data\LoingBackend.Data.csproj" />
   </ItemGroup>
 
 </Project>

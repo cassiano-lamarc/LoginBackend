@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using LoginBackend.Application.Requests;
-using LoginBackend.Application.Responses;
+using LoginBackend.Application.Responses.Students;
 using LoginBackend.Domain.Entities;
 
-namespace LoginBackend.Api.Configuration;
+namespace LoginBackend.Application.Configuration;
 
 public class AutoMapperProfile : Profile
 {

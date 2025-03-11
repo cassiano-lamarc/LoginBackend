@@ -1,5 +1,6 @@
 ﻿using LoginBackend.Domain.Interfaces.Repositories;
 using LoingBackend.Data.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LoginBackend.Api.Configuration;
 

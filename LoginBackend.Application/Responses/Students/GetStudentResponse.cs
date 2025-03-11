@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LoginBackend.Application.Responses;
+namespace LoginBackend.Application.Responses.Students;
 
 public class GetStudentResponse
 {

@@ -1,7 +1,8 @@
-using FluentValidation.AspNetCore;
 using LoginBackend.Api.Configuration;
 using LoginBackend.Api.Configuration.Middleware;
 using LoginBackend.Application;
+using LoginBackend.Application.Configuration;
+using LoginBackend.Application.Configuration.Validations;
 using LoingBackend.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using System.Text;
 const string defaultCors = "DefaultPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options => 
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddCors(options =>
@@ -49,7 +50,7 @@ builder.Services.AddSwaggerGen(x =>
             Reference = new OpenApiReference
             {
                 Type = ReferenceType.SecurityScheme,
-                Id = "Bearer" 
+                Id = "Bearer"
             },
             Scheme = "oauth2",
             Name = "Bearer",
@@ -81,7 +82,7 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAutoMapper(config => config.AddProfile<AutoMapperProfile>());
 ServiceConfigurations.ConfigureSerices(builder.Services);
 RepositoryConfiguraions.ConfigureRepositories(builder.Services);
-ValidatorConfigurations.ConfigureServices(builder.Services);
+ValidatorConfigurations.ConfigureFluentValidations(builder.Services);
 
 var app = builder.Build();
 

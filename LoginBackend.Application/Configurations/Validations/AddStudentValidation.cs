@@ -4,7 +4,7 @@ using LoginBackend.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace LoginBackend.Api.Configuration.Validations;
+namespace LoginBackend.Application.Configuration.Validations;
 
 public class AddStudentValidation : AbstractValidator<AddStudentRequest>
 {
@@ -35,7 +35,7 @@ public class AddStudentValidation : AbstractValidator<AddStudentRequest>
 
         RuleFor(s => s.email)
             .EmailAddress()
-            .WithMessage("Email is not valid");
+            .WithMessage("Input valid Email");
 
         RuleFor(s => s.phone)
             .MaximumLength(phoneMaxLength)

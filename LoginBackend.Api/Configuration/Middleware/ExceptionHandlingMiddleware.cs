@@ -1,7 +1,7 @@
-﻿using LoginBackend.Api.Models;
-using LoginBackend.Domain.Exceptions;
+﻿using LoginBackend.Domain.Exceptions;
 using Newtonsoft.Json;
 using System.Net;
+using LoginBackend.Application.Responses;
 
 namespace LoginBackend.Api.Configuration.Middleware;
 
