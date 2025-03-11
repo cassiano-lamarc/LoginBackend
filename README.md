@@ -14,7 +14,7 @@ services:
     ports:
       - '5433:5432'
     environment:
-      POSTGRES_USER: docker
+        POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: teacher
       PGDATA: /data/postgres-teacher
