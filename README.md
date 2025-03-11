@@ -2,13 +2,11 @@ Aplicação tem o nome de login, mas acabou sendo um projeto completo para geren
 
 Versão do .NET 8
 
-Para conexão com a base precisa ser criado um arquivo docker-compose e utilizar o docker para inicializar.
-
 Após subida do compose, deve ser feita a atualização da base de dados com os seguintes comandos:
 - dotnet ef migrations add initial-migration
 - dotnet ef UPDATE-DATABASE
 
-Utilização das seguintes ferramentas:
+Para conexão com a base precisa ser criado um arquivo docker-compose e utilizar o docker para inicializar, Segue docker-compose:
 services:
   postgres_teacher:
     image: "postgres"
