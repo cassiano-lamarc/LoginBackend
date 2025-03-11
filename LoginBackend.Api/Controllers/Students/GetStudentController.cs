@@ -18,7 +18,7 @@ public class GetStudentController : Controller
 
     [HttpGet]
     [ProducesResponseType<List<GetStudentResponse>>(StatusCodes.Status200OK)]
-    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<List<GetStudentResponse>> Get()
         => await _getUSeCase.Handler();

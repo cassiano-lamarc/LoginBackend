@@ -1,7 +1,7 @@
-using LoginBackend.Api.Configuration.Middleware;
 using LoginBackend.Application;
 using LoginBackend.Application.Configuration;
 using LoginBackend.Application.Configuration.Validations;
+using LoginBackend.Application.Configurations.ErrorHandling;
 using LoingBackend.Data.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -83,9 +83,13 @@ ServiceConfigurations.ConfigureSerices(builder.Services);
 RepositoryConfiguraions.ConfigureRepositories(builder.Services);
 ValidatorConfigurations.ConfigureFluentValidations(builder.Services);
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -99,7 +103,5 @@ app.UseCors(defaultCors);
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();

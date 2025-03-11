@@ -18,7 +18,7 @@ public class GetByIdStudentsController : Controller
 
     [HttpGet("{id}")]
     [ProducesResponseType<GetStudentResponse>(StatusCodes.Status200OK)]
-    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<GetStudentResponse> GetById([FromRoute] int id)
         => await _getByIdUseCase.Handler(id);

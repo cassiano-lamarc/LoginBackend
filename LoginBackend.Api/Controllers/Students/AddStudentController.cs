@@ -18,7 +18,7 @@ public class AddStudentController : Controller
 
     [HttpPost]
     [ProducesResponseType<int>(StatusCodes.Status200OK)]
-    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<int> Add([FromBody] AddStudentRequest request)
         => await _addUseCase.Handler(request);

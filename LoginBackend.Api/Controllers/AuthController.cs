@@ -26,7 +26,7 @@ public class AuthController : Controller
     [AllowAnonymous]
     [HttpPost]
     [ProducesResponseType<object>(StatusCodes.Status200OK)]
-    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Login([FromBody] LoginCredencialsRequest loginCredencials)
     {
         var validation = _validator.Validate(loginCredencials);

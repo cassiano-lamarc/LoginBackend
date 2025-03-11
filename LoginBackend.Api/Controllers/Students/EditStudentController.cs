@@ -18,7 +18,7 @@ public class EditStudentController : Controller
 
     [HttpPut("{id}")]
     [ProducesResponseType<bool>(StatusCodes.Status200OK)]
-    [ProducesResponseType<CustomResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<bool> Edit([FromRoute] int id, [FromBody] AddStudentRequest request)
         => await _editUseCase.Handler(id, request);
