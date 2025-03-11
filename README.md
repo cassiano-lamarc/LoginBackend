@@ -2,13 +2,6 @@ The application is named "Login," but it has evolved into a complete project for
 
 .NET 8 Version
 
-After bringing up the Compose, the database must be updated using the following commands:
-
-- dotnet ef migrations add initial-migration
-- dotnet ef database update
-
-If you encounter an error when using dotnet ef commands, try installing it with the following command:
-dotnet tool install --global dotnet-ef
 
 To connect to the database, you need to create a Docker Compose file and use Docker to initialize it. Here is the docker-compose file:
 services:
@@ -29,3 +22,24 @@ services:
 volumes:
   dbteacher:
     driver: local
+
+After bringing up the Compose, the database must be updated using the following commands:
+
+- Open package manager console and cd to data folder.
+- set startup project LoginBackend.Api
+- change the pattern project to LoginBackend.Data
+- run: dotnet ef migrations add initial-migration
+- run: dotnet ef database update
+- connect the databse with any sgbd for postgresql that you prefer with connections data below:
+  host: localhost
+  port: 5433
+  database: teacher
+  user: docker
+  password: docker
+- after that you have to create a user to login the application: (patch the values with your preference)
+  INSERT INTO public."User"
+    ("Password", "Email")
+  VALUES('', '');
+
+If you encounter an error when using dotnet ef commands, install it with the following command and try again:
+dotnet tool install --global dotnet-ef
