@@ -1,12 +1,15 @@
-Aplicação tem o nome de login, mas acabou sendo um projeto completo para gerenciar estudantes e outras coisas que estão por vir.
+The application is named "Login," but it has evolved into a complete project for managing students and other upcoming features.
 
-Versão do .NET 8
+.NET 8 Version
 
-Após subida do compose, deve ser feita a atualização da base de dados com os seguintes comandos:
-- dotnet ef migrations add initial-migration
-- dotnet ef UPDATE-DATABASE
+After bringing up the Compose, the database must be updated using the following commands:
 
-Para conexão com a base precisa ser criado um arquivo docker-compose e utilizar o docker para inicializar, Segue docker-compose:
+dotnet ef migrations add initial-migration
+dotnet ef update-database
+If you encounter an error when using dotnet ef commands, try installing it with the following command:
+dotnet tool install --global dotnet-ef
+
+To connect to the database, you need to create a Docker Compose file and use Docker to initialize it. Here is the docker-compose file:
 services:
   postgres_teacher:
     image: "postgres"
