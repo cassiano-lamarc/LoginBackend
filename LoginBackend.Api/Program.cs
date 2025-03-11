@@ -1,4 +1,3 @@
-using LoginBackend.Api.Configuration;
 using LoginBackend.Api.Configuration.Middleware;
 using LoginBackend.Application;
 using LoginBackend.Application.Configuration;

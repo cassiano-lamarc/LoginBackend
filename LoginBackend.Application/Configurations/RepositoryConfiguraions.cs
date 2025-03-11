@@ -2,7 +2,7 @@
 using LoingBackend.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LoginBackend.Api.Configuration;
+namespace LoginBackend.Application.Configuration;
 
 public static class RepositoryConfiguraions
 {   
